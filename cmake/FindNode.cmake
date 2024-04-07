@@ -1,8 +1,10 @@
 include(SelectLibraryConfigurations)
 include(FindPackageHandleStandardArgs)
 
+set(Node_ABI ${Node_ABI_DEFAULT} CACHE STRING "Nobe ABI version")
+
 if(NOT WIN32)
-    if(NOT DEFINED Node_ABI)
+    if(NOT Node_ABI)
         message(FATAL_ERROR "Please set Node_ABI")
     endif()
     find_path(Node_INCLUDE_DIR node_api.h PATH_SUFFIXES node)
