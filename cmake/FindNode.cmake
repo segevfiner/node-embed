@@ -10,6 +10,8 @@ if(NOT WIN32)
     endif()
     find_path(Node_INCLUDE_DIR node_api.h PATH_SUFFIXES node)
     find_library(Node_LIBRARY_RELEASE node.${Node_ABI})
+else()
+    message(FATAL_ERROR TODO)
 endif()
 
 select_library_configurations(Node)
