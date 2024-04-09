@@ -1,7 +1,8 @@
 include(SelectLibraryConfigurations)
 include(FindPackageHandleStandardArgs)
 
-set(Node_ABI ${Node_ABI_DEFAULT} CACHE STRING "Nobe ABI version")
+set(Node_ROOT CACHE PATH "Built Node.js root.")
+set(Node_ABI ${Node_ABI_DEFAULT} CACHE STRING "Nobe ABI version.")
 
 if(NOT WIN32)
     if(NOT Node_ABI)
