@@ -7,5 +7,14 @@ set(CMAKE_CXX_STANDARD 17)
 set(Node_ABI_DEFAULT 115)
 find_package(Node REQUIRED)
 
+if(APPLE)
+  set(CMAKE_INSTALL_RPATH "@executable_path/../lib")
+elseif(UNIX)
+  set(CMAKE_INSTALL_RPATH "$ORIGIN/../lib")
+endif()
+
 add_executable(node-embed src/main.cpp)
 target_link_libraries(node-embed PRIVATE Node::Node)
+
+install(TARGETS node-embed RUNTIME_DEPENDENCY_SET node-embed)
+install(RUNTIME_DEPENDENCY_SET node-embed)
