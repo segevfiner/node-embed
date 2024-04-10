@@ -6,9 +6,10 @@
 #include <uv.h>
 
 const char* ENTRY = R"(
+const vm = require('node:vm');
 const publicRequire = require('node:module').createRequire(process.cwd() + '/');
 globalThis.require = publicRequire;
-require('node:vm').runInThisContext(process.argv[1]);
+vm.runInThisContext(process.argv[1], { importModuleDynamically: vm.constants.USE_MAIN_CONTEXT_DEFAULT_LOADER });
 )";
 
 static int RunNodeInstance(
