@@ -60,6 +60,7 @@ if(Node_FOUND)
     set_target_properties(Node::Node PROPERTIES
         INTERFACE_INCLUDE_DIRECTORIES "${Node_INCLUDE_DIR}"
     )
+    target_compile_features(Node::Node INTERFACE cxx_std_17)
 endif()
 
 mark_as_advanced(

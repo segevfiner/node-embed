@@ -2,9 +2,6 @@ cmake_minimum_required(VERSION 3.15...3.29)
 project(node-embed)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED True)
-
 set(Node_ABI_DEFAULT 115)
 find_package(Node REQUIRED)
 
