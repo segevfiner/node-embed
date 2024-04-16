@@ -20,11 +20,18 @@ else()
     find_file(Node_DEF_DEBUG node.def HINTS ${Node_LIBRARY_DIR}/Debug NO_DEFAULT_PATH)
 endif()
 
+file(STRINGS ${Node_INCLUDE_DIR}/node_version.h _Node_VERS REGEX "^[ \\t]*#define[ \\t]+NODE_(MAJOR|MINOR|PATCH)_VERSION")
+string(REGEX REPLACE ".*NODE_MAJOR_VERSION[ \\t]+([0-9]+).*" "\\1" _Node_MAJOR "${_Node_VERS}")
+string(REGEX REPLACE ".*NODE_MINOR_VERSION[ \\t]+([0-9]+).*" "\\1" _Node_MINOR "${_Node_VERS}")
+string(REGEX REPLACE ".*NODE_PATCH_VERSION[ \\t]+([0-9]+).*" "\\1" _Node_PATCH "${_Node_VERS}")
+set(Node_VERSION ${_Node_MAJOR}.${_Node_MINOR}.${_Node_PATCH})
+
 select_library_configurations(Node)
 find_package_handle_standard_args(Node
     REQUIRED_VARS
         Node_INCLUDE_DIR
         Node_LIBRARY
+    VERSION_VAR Node_VERSION
 )
 
 if(Node_FOUND)
